@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+html(lang='en')
+head
+	meta(charset="UTF-8")
+	title Document
+	link(href='https://fonts.googleapis.com/css?family=Roboto:400,700,900&subset=cyrillic' rel='stylesheet')
+	script(src='https://use.fontawesome.com/5e0e18a117.js')
+	script(src='./js/main.js')
+	link(href='css/main.css' rel='stylesheet')
+body#body
+	.background#background(hidden)
+	.background-cover#backgroundCover
+	.card
+		.card__main-info
+			h1.main-info__name
+				| OLEG LEMESHKO
+			.main-info__age#age
+			.main-info__contact-block
+				.contact-block__address.info-block
+					.address__icon.icon
+						i(aria-hidden='true').fa.fa-map-marker
+					| Saint-Petersburg, Russia
+				.contact-block__phone.info-block
+					.phone_icon.icon
+						i(aria-hidden='true').fa.fa-phone
+					| +7 (950) 028 10 79
+				.contact-block__mail.info-block
+					.mail__icon.icon
+						i(aria-hidden='true').fa.fa-envelope
+					a(href='mailto:ollemesh@gmail.com') ollemesh@gmail.com
+				a(herf='').contact-block__another-contact#contacts Another Contacts
+			.main-info__CV-block
+				.CV-block__pdf.info-block
+					.pdf__icon.icon
+						i(aria-hidden='true').fa.fa-file-pdf-o
+					| download my CV (PDF)
+				.CV-block__hh.info-block
+					.hh__icon.icon
+						i(aria-hidden='true').fa.fa-circle-thin
+					| my CV in HeadHunter
+		.card__work-experiance
+			h1.work-experiance__header
+				p JavaScript developer
+			.work-experiance__skills
+				h2.skills__header.second-header
+					| Skills:
+				ul.skills__list
+					li.skills__item JavaScript (ES2015 / ES6)
+					li.skills__item HTML
+					li.skills__item CSS
+						p
+							| Understanding popular frameworks
+							| and web technologies:
+							| Angular, Ember, React, Git, Handlebars,
+							| BEM, Stylus, Jade, MV*, NodeJS, OOP.
+			.work-experiance__examples
+				.examples
+					h2.examples__header.second-header
+						| Work examples:
+					button.examples__js.examples__button
+						| JavaScript Projects
+					button.examples__web-pages.examples__button
+						| Web Pages
+
+script#entry-template(type='text/x-handlebars-template')
+	ul.additionalContacts
+		li.additionalContacts__skype ollemesh
+		li.additionalContacts__github ollemesh
+		li.additionalContacts__linked-in ollemesh
