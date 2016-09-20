@@ -1,5 +1,5 @@
 let gulp = require('gulp'),
-	watch = require('gulp-watch'),
+	//watch = require('gulp-watch'),
 	prefixer = require('gulp-autoprefixer'),
 //	uglify = require('gulp-uglify'),
 	stylus = require('gulp-stylus'),
@@ -10,6 +10,7 @@ let gulp = require('gulp'),
 	jade = require('gulp-jade'),
 	browserSync = require('browser-sync'),
 	reload = browserSync.reload;
+	//watch = browserSync.watch;
 
 //paths to repos
 let path = {
@@ -31,11 +32,11 @@ let path = {
 	},
 	watch: {
 		// files witch changes we watch
-		jade: 'source/**/*.jade',
-		js: 'source/**/*.js',
-		stylus: 'source/style/**/*.styl',
-		img: 'source/img/**/*.*',
-		fonts: 'source/fonts/**/*.*'
+		jade: 'sources/*.jade',
+		js: 'sources/js/*.js',
+		stylus: 'sources/style/*.styl',
+		img: 'sources/img/*.jpg',
+		fonts: 'sources/fonts/*.*'
 	},
 	clean: './build'
 };
@@ -69,7 +70,7 @@ gulp.task('js:build', () => {
 		.pipe(reload({stream: true}));
 });
 
-gulp.task('style:build', () => {
+gulp.task('css:build', () => {
 	gulp.src(path.src.stylus)
 		.pipe(sourcemaps.init())
 		.pipe(stylus())
@@ -99,27 +100,44 @@ gulp.task('fonts:build', () => {
 gulp.task('build', [
 	'html:build',
 	'js:build',
-	'style:build',
+	'css:build',
 	'image:build',
 	'fonts:build'
 ]);
 
+// gulp.task('watch', () => {
+// 	watch([path.watch.jade], (event, cb) => {
+// 		gulp.start('html:build');
+// 	});
+// 	watch([path.watch.stylus], (event, cb) => {
+// 		gulp.start('css:build');
+// 	});
+// 	watch([path.watch.js], (event, cb) => {
+// 		gulp.start('js:build');
+// 	});
+// 	watch([path.watch.img], (event, cb) => {
+// 		gulp.start('image:build');
+// 	});
+// 	watch([path.watch.fonts], (event, cb) => {
+// 		gulp.start('fonts:build');
+// 	});
+// });
+
+// gulp.task('watch', () => {
+// 	console.log('wach to jade')
+// 	watch(path.watch.jade, (e, file) => {
+// 		console.log(e);
+// 		console.log(file);
+// 		gulp.start('html:build');
+// 	});
+// });
+
 gulp.task('watch', () => {
-	watch([path.watch.jade], (event, cb) => {
-		gulp.start('jade:build');
-	});
-	watch([path.watch.stylus], (event, cb) => {
-		gulp.start('stylus:build');
-	});
-	watch([path.watch.js], (event, cb) => {
-		gulp.start('js:build');
-	});
-	watch([path.watch.img], (event, cb) => {
-		gulp.start('image:build');
-	});
-	watch([path.watch.fonts], (event, cb) => {
-		gulp.start('fonts:build');
-	});
+	gulp.watch([path.watch.jade], ['html:build']);
+	gulp.watch([path.watch.stylus], ['css:build']);
+	gulp.watch([path.watch.js], ['js:build']);
+	gulp.watch([path.watch.img], ['img:build']);
+	gulp.watch([path.watch.fonts], ['fonts:build']);
 });
 
 gulp.task('webserver', () => {

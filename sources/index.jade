@@ -5,12 +5,13 @@ head
 	title Document
 	link(href='https://fonts.googleapis.com/css?family=Roboto:400,700,900&subset=cyrillic' rel='stylesheet')
 	script(src='https://use.fontawesome.com/5e0e18a117.js')
-	script(src='./js/main.js')
-	link(href='css/main.css' rel='stylesheet')
+	script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js')
+	script(type='text/javascript' src='./js/main.js')
+	link(href='./css/main.css' rel='stylesheet')
 body#body
 	.background#background(hidden)
 	.background-cover#backgroundCover
-	.card
+	.card#card
 		.card__main-info
 			h1.main-info__name
 				| OLEG LEMESHKO
@@ -24,11 +25,11 @@ body#body
 					.phone_icon.icon
 						i(aria-hidden='true').fa.fa-phone
 					| +7 (950) 028 10 79
-				.contact-block__mail.info-block
+				a(href='mailto:ollemesh@gmail.com').contact-block__mail.info-block
 					.mail__icon.icon
 						i(aria-hidden='true').fa.fa-envelope
-					a(href='mailto:ollemesh@gmail.com') ollemesh@gmail.com
-				a(herf='').contact-block__another-contact#contacts Another Contacts
+					| ollemesh@gmail.com
+				a(herf='').contact-block__other-contact#contacts other contacts
 			.main-info__CV-block
 				.CV-block__pdf.info-block
 					.pdf__icon.icon
@@ -62,8 +63,7 @@ body#body
 					button.examples__web-pages.examples__button
 						| Web Pages
 
-script#entry-template(type='text/x-handlebars-template')
-	ul.additionalContacts
-		li.additionalContacts__skype ollemesh
-		li.additionalContacts__github ollemesh
-		li.additionalContacts__linked-in ollemesh
+script.just#other-contacts-template(type='text/x-handlebars-template')
+	ul.additionalContacts__list
+		li.additionalContacts__item ollemesh
+		li.additionalContacts__item ollemesh
