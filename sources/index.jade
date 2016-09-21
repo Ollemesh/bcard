@@ -6,6 +6,7 @@ head
 	link(href='https://fonts.googleapis.com/css?family=Roboto:400,700,900&subset=cyrillic' rel='stylesheet')
 	script(src='https://use.fontawesome.com/5e0e18a117.js')
 	script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js')
+	script(type='text/javascript' src='https://secure.skypeassets.com/i/scom/js/skype-uri.js')
 	script(type='text/javascript' src='./js/main.js')
 	link(href='./css/main.css' rel='stylesheet')
 body#body
@@ -58,12 +59,30 @@ body#body
 				.examples
 					h2.examples__header.second-header
 						| Work examples:
-					button.examples__js.examples__button
+					button(data-type='jsCarousel').examples__js.examples__button
 						| JavaScript Projects
-					button.examples__web-pages.examples__button
+					button(data-type='webPagesCarousel').examples__web-pages.examples__button
 						| Web Pages
 
-script.just#other-contacts-template(type='text/x-handlebars-template')
-	ul.additionalContacts__list
-		li.additionalContacts__item ollemesh
-		li.additionalContacts__item ollemesh
+script.just#otherContactsTemplate(type='text/x-handlebars-template')
+	.additionalContacts__list
+		a(href='skype:ollemesh?add').additionalContacts__item
+			i(aria-hidden='true').additionalContacts__icon.fa.fa-skype.icon
+			| ollemesh
+		a(href='https://www.linkedin.com/in/ollemesh?trk=hp-identity-name').additionalContacts__item
+			i(aria-hidden='true').additionalContacts__icon.fa.fa-linkedin-square.icon
+			| linked-in
+
+script(type='text/x-handlebars-template')#carouselTamplate
+	.slide#slide
+		h1.slide__header
+			{{header}}
+		a.slide__git-hub.fa.fa-github(href='#')
+		.slide__examples-switcher#switcher {{exampleKind}}
+		.slide__arrow.fa.fa-chevron-left#previousArrow
+		.slide__project-preview( style='background-image: url({{preview}})' )
+		p.slide__text
+			{{text}}
+		.slide__arrow.fa.fa-chevron-right#nextArrow
+		.slide__points-bar#pointsBar
+			{{getPointsHTML slidesQuantity index}}

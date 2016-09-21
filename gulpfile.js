@@ -105,33 +105,6 @@ gulp.task('build', [
 	'fonts:build'
 ]);
 
-// gulp.task('watch', () => {
-// 	watch([path.watch.jade], (event, cb) => {
-// 		gulp.start('html:build');
-// 	});
-// 	watch([path.watch.stylus], (event, cb) => {
-// 		gulp.start('css:build');
-// 	});
-// 	watch([path.watch.js], (event, cb) => {
-// 		gulp.start('js:build');
-// 	});
-// 	watch([path.watch.img], (event, cb) => {
-// 		gulp.start('image:build');
-// 	});
-// 	watch([path.watch.fonts], (event, cb) => {
-// 		gulp.start('fonts:build');
-// 	});
-// });
-
-// gulp.task('watch', () => {
-// 	console.log('wach to jade')
-// 	watch(path.watch.jade, (e, file) => {
-// 		console.log(e);
-// 		console.log(file);
-// 		gulp.start('html:build');
-// 	});
-// });
-
 gulp.task('watch', () => {
 	gulp.watch([path.watch.jade], ['html:build']);
 	gulp.watch([path.watch.stylus], ['css:build']);
