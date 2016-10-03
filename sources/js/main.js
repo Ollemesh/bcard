@@ -87,23 +87,31 @@ class Carousel {
 	}
 
 	addHoveredClass(e) {
-		let classList = e.target.classList;
+		this.addClass(e.target, 'hovered');
+	}
+
+	removeHoveredClass(e) {
+		this.removeClass(e.target, 'hovered');
+	}
+
+	addClass(element, modificator) {
+		let classList = element.classList;
 		let classesQuantity = classList.length;
 		for( let i = 0; i < classesQuantity; i++) {
 			if(classList[i].includes('__')) {
-				classList.add(`${classList[i]}_hovered`);
+				classList.add(`${classList[i]}_${modificator}`);
 			}
 		}
 	}
 
-	removeHoveredClass(e) {
-		let classList = e.target.classList;
-		for( let i = 0; i < classList.length; i++) {
-			if(classList[i].includes('_hovered')) {
-				classList.remove( classList[i] );
-			}
+	removeClass(element, modificator) {
+	let classList = element.classList;
+	for( let i = 0; i < classList.length; i++) {
+		if(classList[i].includes(`_${modificator}`)) {
+			classList.remove( classList[i] );
 		}
 	}
+};
 
 	getCarouselBody(index) {
 		this.tamplate = Handlebars.compile(
@@ -121,31 +129,39 @@ class Carousel {
 
 let jsCarousel = new Carousel([
 	{
-		header: 'MapsReview',
+		header: 'YandexMap API',
 		text: 'Приложение представляет из себя Яндекс-карту. На карте можно выбирать объекты и оставлять свои отзывы о них.Для выбора объекта необходимо просто кликнуть по нему. При клике на объект отображается всплывающее окно (окно отзывов). В заголовке окна отображен адрес выбранного объекта. Окно позволяет добавить отзыв об объекту и посмотреть уже имеющиеся отзывы.При создании отзыва в соответствующее место карты добавляется метка. Все метки одного объекта и объектов поблизости группируются в одну. У сгруппированных меток показывается их количество.Если кликнуть на одиночную метку, то появится окно отзывов по данному объекту. Если кликнуть на сгруппированную метку, то откроется карусель с отзывами. Каждый элемент карусели содержит адрес объекта. При клике на адрес, откроется окно с отзывами по данному объекту. При масштабировании карты происходит группировка меток.Примененные технологии: JavaScript ES2015 (ES6), Yandex Maps API, Handlebars.',
-		preview: 'http://img.yinnyang.ru/product_list/img6a/33235176873_1.jpg',
-		exampleKind: 'JS Examples'
+		preview: '../img/yampsPreview.png',
+		exampleKind: 'JS Examples',
+		gitHubLink: 'https://github.com/Ollemesh/yandexMapsApi',
+		exampleLink: 'examples/yandexMapsApi'
 	},
 	{
 		header: 'FriendsFilter',
 		text: 'Приложение представляет из себя два списка. В левом перечислены все ваши друзья ВКонтакте. В правом списке только те друзья, которых вы выберете. Друзей можно перемещать между списками двумя способами: перетаскиванием (Drag&Drop) и нажимая на "+ / x" рядом с другом. В обоих списках работает поиск по фамилии. Нажав на "сохранить" оба списка сохраняются и при перезагрузке страницы восстанавливаются.Примененные технологии и парадигмы: JavaScript ES2015 (ES6), VK API, Handlebars, ООП.',
-		preview: 'http://img.yinnyang.ru/product_list/img6a/33235176873_1.jpg',
-		exampleKind: 'JS Examples'
+		preview: '../img/fFiltrPreview.png',
+		exampleKind: 'JS Examples',
+		gitHubLink: 'https://github.com/Ollemesh/FriendsFilter',
+		exampleLink: 'examples/fFilter'
 	}
 ]);
 
 let webPagesCarousel = new Carousel([
 	{
-		header: 'Respo Page',
+		header: 'Web Page',
 		text: 'Example of my design and slicing skills',
-		preview: 'http://img.yinnyang.ru/product_list/img6a/33235176873_1.jpg',
-		exampleKind: 'Web Pages Examples'
+		preview: '../img/webPagePreview.png',
+		exampleKind: 'Web Pages Examples',
+		gitHubLink: 'https://github.com/Ollemesh/webPage',
+		exampleLink: 'examples/webPage'
 	},
 	{
 		header: 'to CSSSR test',
-		text: 'Test tusk to CSSSR team',
-		preview: 'http://img.yinnyang.ru/product_list/img6a/33235176873_1.jpg',
-		exampleKind: 'Web Pages Examples'
+		text: 'Test task to CSSSR team',
+		preview: '../img/csssrPreview.png',
+		exampleKind: 'Web Pages Examples',
+		gitHubLink: 'https://github.com/Ollemesh/csssr',
+		exampleLink: 'examples/csssr'
 	}
 ]);
 
@@ -166,11 +182,13 @@ window.onload =  () => {
 //----------------- other contacts pop-up ------------
 
 document.getElementById('contacts').addEventListener('click', showOtherContacts);
-document.getElementById('body').addEventListener('click', hideOtherContacts);
+document.addEventListener('click', hideOtherContacts);
 
 //---------------------- carousel ---------------------------------
 
-document.getElementById('body').addEventListener('click', showCarousel);
+document.addEventListener('click', showCarousel);
+document.addEventListener('nextSlide', setSwitcherHandlers);
+document.addEventListener('click', followLink);
 
 };
 
@@ -188,36 +206,18 @@ function showOtherContacts(e) {
 	document.getElementById('card').appendChild(otherContacts);
 
 	e.stopPropagation();
-}
+};
+
 function hideOtherContacts(e) {
 	if ( e.target.classList[0] && e.target.classList[0].includes('additionalContacts') ) return;
 	if ( document.querySelector('.additionalContacts') )
 		document.getElementById('card').removeChild(document.querySelector('.additionalContacts'));
-}
+};
 //----------------------------------------------------
 
 //--------------------Handlers from carousel script----------------------------
 
 let slide, switcher, currentExample;
-
-function addHoveredClass(e) {
-	let classList = e.target.classList;
-	let classesQuantity = classList.length;
-	for( let i = 0; i < classesQuantity; i++) {
-		if(classList[i].includes('__')) {
-			classList.add(`${classList[i]}_hovered`);
-		}
-	}
-};
-
-function removeHoveredClass(e) {
-	let classList = e.target.classList;
-	for( let i = 0; i < classList.length; i++) {
-		if(classList[i].includes('_hovered')) {
-			classList.remove( classList[i] );
-		}
-	}
-};
 
 function enableSwitcher(e) {
 	if(e.target.classList[0] === 'slide__examples-switcher') {
@@ -265,12 +265,42 @@ function setSwitcherHandlers() {
 	switcher.addEventListener('click', chooseCarousel);
 };
 
+function followLink(e) {
+	if(e.target.dataset.link) {
+		document.location.href = e.target.dataset.link;
+	}
+};
+
 //----------------------------------------------------
 
 //--------------- lats parts Handlers for render carousels after button click ----------------------
 
 function showCarousel(e) {
 	if(e.target.dataset.type) {
-		carousels[e.target.dataset.type].render(body);
+		carousels[e.target.dataset.type].render(getCarouselContainer());
 	}
+};
+
+function getCarouselContainer() {
+	let carouselContainer = document.getElementById('carouselContainer');
+
+	if(!carouselContainer) {
+		carouselContainer = document.createElement('div');
+		carouselContainer.setAttribute('id', 'carouselContainer');
+		carouselContainer.style.cssText = `
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, 0.5);`;
+		body.appendChild(carouselContainer);
+
+		carouselContainer.addEventListener('click', (e) => {
+			if(e.target === carouselContainer)
+				body.removeChild(carouselContainer);
+		})
+	}
+
+	return carouselContainer;
 };

@@ -9,6 +9,7 @@ head
 	script(type='text/javascript' src='https://secure.skypeassets.com/i/scom/js/skype-uri.js')
 	script(type='text/javascript' src='./js/main.js')
 	link(href='./css/main.css' rel='stylesheet')
+
 body#body
 	.background#background(hidden)
 	.background-cover#backgroundCover
@@ -26,17 +27,17 @@ body#body
 					.phone_icon.icon
 						i(aria-hidden='true').fa.fa-phone
 					| +7 (950) 028 10 79
-				a(href='mailto:ollemesh@gmail.com').contact-block__mail.info-block
+				a(href='mailto:ollemesh@gmail.com').contact-block__mail.info-block.clickable
 					.mail__icon.icon
 						i(aria-hidden='true').fa.fa-envelope
 					| ollemesh@gmail.com
-				a(herf='').contact-block__other-contact#contacts other contacts
+				a(herf='').contact-block__other-contact.clickable#contacts other contacts
 			.main-info__CV-block
-				.CV-block__pdf.info-block
+				a.CV-block__pdf.info-block.clickable(href='cv.pdf' download='Lemeshko Oleg Vadimovich')
 					.pdf__icon.icon
 						i(aria-hidden='true').fa.fa-file-pdf-o
 					| download my CV (PDF)
-				.CV-block__hh.info-block
+				a.CV-block__hh.info-block.clickable(href='https://spb.hh.ru/resume/eef045a5ff02df80f10039ed1f5a4431506730')
 					.hh__icon.icon
 						i(aria-hidden='true').fa.fa-circle-thin
 					| my CV in HeadHunter
@@ -59,9 +60,9 @@ body#body
 				.examples
 					h2.examples__header.second-header
 						| Work examples:
-					button(data-type='jsCarousel').examples__js.examples__button
+					button(data-type='jsCarousel').examples__js.examples__button.clickable
 						| JavaScript Projects
-					button(data-type='webPagesCarousel').examples__web-pages.examples__button
+					button(data-type='webPagesCarousel').examples__web-pages.examples__button.clickable
 						| Web Pages
 
 script.just#otherContactsTemplate(type='text/x-handlebars-template')
@@ -73,16 +74,16 @@ script.just#otherContactsTemplate(type='text/x-handlebars-template')
 			i(aria-hidden='true').additionalContacts__icon.fa.fa-linkedin-square.icon
 			| linked-in
 
-script(type='text/x-handlebars-template')#carouselTamplate
+script#carouselTamplate(type='text/x-handlebars-template')
 	.slide#slide
 		h1.slide__header
 			{{header}}
-		a.slide__git-hub.fa.fa-github(href='#')
+			a.slide__git-hub.fa.fa-github.clickable(href='{{gitHubLink}}')
 		.slide__examples-switcher#switcher {{exampleKind}}
-		.slide__arrow.fa.fa-chevron-left#previousArrow
-		.slide__project-preview( style='background-image: url({{preview}})' )
-		p.slide__text
+		.slide__arrow.fa.fa-chevron-left.clickable#previousArrow
+		.slide__project-preview( data-link='{{exampleLink}}' style='background: url({{preview}}) top left / cover;' )
+		p.slide__text 
 			{{text}}
-		.slide__arrow.fa.fa-chevron-right#nextArrow
-		.slide__points-bar#pointsBar
+		.slide__arrow.fa.fa-chevron-right.clickable#nextArrow
+		.slide__points-bar#pointsBar 
 			{{getPointsHTML slidesQuantity index}}

@@ -1,7 +1,6 @@
 let gulp = require('gulp'),
-	//watch = require('gulp-watch'),
 	prefixer = require('gulp-autoprefixer'),
-//	uglify = require('gulp-uglify'),
+	uglify = require('gulp-uglify'),
 	stylus = require('gulp-stylus'),
 	sourcemaps = require('gulp-sourcemaps'),
 	cssmin = require('gulp-minify-css'),
@@ -32,10 +31,10 @@ let path = {
 	},
 	watch: {
 		// files witch changes we watch
-		jade: 'sources/*.jade',
-		js: 'sources/js/*.js',
-		stylus: 'sources/style/*.styl',
-		img: 'sources/img/*.jpg',
+		jade: 'sources/**/*.jade',
+		js: 'sources/js/**/*.js',
+		stylus: 'sources/style/**/*.styl',
+		img: 'sources/img/*.png',
 		fonts: 'sources/fonts/*.*'
 	},
 	clean: './build'
@@ -109,7 +108,7 @@ gulp.task('watch', () => {
 	gulp.watch([path.watch.jade], ['html:build']);
 	gulp.watch([path.watch.stylus], ['css:build']);
 	gulp.watch([path.watch.js], ['js:build']);
-	gulp.watch([path.watch.img], ['img:build']);
+	gulp.watch([path.watch.img], ['image:build']);
 	gulp.watch([path.watch.fonts], ['fonts:build']);
 });
 

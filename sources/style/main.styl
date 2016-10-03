@@ -2,208 +2,204 @@ main-color = #87ccc3
 second-color = #63bdb1
 
 body
-		font-family 'Roboto', sans-serif
-		font-weight bold
+	font-family 'Roboto', sans-serif
+	font-weight bold
 
+a
+	display block
+	color white
+	text-decoration none
+	
 .background
-		position absolute
-		top 0px
-		left 0px
-		width 100%
-		height 100%
+	position absolute
+	top 0px
+	left 0px
+	width 100%
+	height 100%
 
-		background-image url(https://hd.unsplash.com/photo-1470928605339-7901da4eddf8)
-		background-size cover
+	background-image url(https://hd.unsplash.com/photo-1470928605339-7901da4eddf8)
+	background-size cover
 
 .background-cover
-		position absolute
-		top 0px
-		left 0px
-		width 100%
-		height 100%
-		background gray
-		transition opacity 3s linear
+	position absolute
+	top 0px
+	left 0px
+	width 100%
+	height 100%
+	background gray
+	transition opacity 3s linear
 
-		&_loaded
-				opacity 0.3
+	&_loaded
+		opacity 0.3
 
 .card
-		position absolute
-		top 50%
-		left 50%
-		width 600px
-		height 330px
-		transform translate(-50%, -50%)
+	position absolute
+	top 50%
+	left 50%
+	width 600px
+	height 330px
+	transform translate(-50%, -50%)
 
-		&__main-info
-				float left
-				width 45%
-				height 100%
-				background-color main-color
-				color white
+	&__main-info
+		float left
+		width 45%
+		height 100%
+		background-color main-color
+		color white
 
-		&__work-experiance
-				float right
-				width 55%
-				height 100%
-				background-color white
+	&__work-experiance
+		float right
+		width 55%
+		height 100%
+		background-color white
 
 .main-info
 
-		&__name
-				text-align center
-				font-weight 900
+	&__name
+		text-align center
+		font-weight 900
 
-		&__age
-				font-weight normal
+	&__age
+		font-weight normal
 
-		&__contact-block
-				margin-top 20px
+	&__contact-block
+		margin-top 20px
 
-		&__CV-block
-				position relative
-				top 55px
+	&__CV-block
+		position relative
+		top 55px
 
 .contact-block
 
-		&__address
-				cursor auto !important
+	&__address
+		cursor auto !important
 
-		&__mail
-				display block
-				color white
-				text-decoration none
-
-		&__other-contact
-				display inline-block
-				margin-left 85px
-				font-weight normal
-				text-decoration underline
-				font-size 15
-				cursor pointer
+	&__other-contact
+		display inline-block
+		margin-left 85px
+		font-weight normal
+		text-decoration underline
+		font-size 15
+		cursor pointer
 
 .work-experiance
 
-		&__header
-				text-align center
-				font-weight black
-				font-size 25px
-				margin-top 20px
-				margin-bottom 15px
+	&__header
+		text-align center
+		font-weight black
+		font-size 25px
+		margin-top 20px
+		margin-bottom 15px
 
-				& p
-						margin-top 13px
-						margin-bottom 5px
+		& p
+			margin-top 13px
+			margin-bottom 5px
 
-		&__cv
-				margin-left 50%
-				transform translateX(-12px)
-				font-size 20px
-				cursor pointer
+	&__cv
+		margin-left 50%
+		transform translateX(-12px)
+		font-size 20px
+		cursor pointer
 
-		&__skills
-				width 300px
+	&__skills
+		width 300px
 
 .skills
 
-		&__list
-				margin 0
-				margin-left 40px
-				padding-left 0
-				font-weight normal
+	&__list
+		margin 0
+		margin-left 40px
+		padding-left 0
+		font-weight normal
 
-		&__item
-				list-style-type none
+	&__item
+		list-style-type none
 
 .examples
 
-		&__js
-				margin 0 0 0 40px
+	&__js
+		margin 0 0 0 40px
 
-		&__web-pages
-				margin 0 0 0 20px
+	&__web-pages
+		margin 0 0 0 20px
 
-		&__button
-				font-family Roboto
-				font-size 14px
-				border none
-				outline none
-				background-color white
-				color white
-				background-color main-color
-				padding 3px
+	&__button
+		font-family Roboto
+		font-size 14px
+		border none
+		outline none
+		background-color white
+		color white
+		background-color main-color
+		padding 3px
 
-				&:hover
-						background-color second-color
-
-				&:active
-						position relative
-						top 1px
+		&:hover
+			background-color second-color
 
 .additionalContacts
-		display inline-block
-		position relative
-		width 150px
-		height 70px
-		border 2px solid second-color
-		background-color white
-		top -165px
-		left 60px
+	display inline-block
+	position relative
+	width 150px
+	height 70px
+	border 2px solid second-color
+	background-color white
+	top -165px
+	left 60px
 
-		&__list
-				display block
-				margin 0
-				padding 0
+	&__list
+		display block
+		margin 0
+		padding 0
 
-		&__item
-				list-style-type none
-				margin 10px 0 5px 25px
-				display block
-				text-decoration none
-				color black
+	&__item
+		list-style-type none
+		margin 10px 0 5px 25px
+		display block
+		text-decoration none
+		color black
 
 .info-block
-		margin-left 35px
-		width 250px
-		height 25px
-		margin-bottom 10px
-		cursor pointer
+	margin-left 35px
+	width 250px
+	height 25px
+	margin-bottom 10px
+	cursor pointer
 
 .icon
-		float left
-		width 30px
-		height 25px
-		font-size 20px
-		transform translateY(-3px)
+	float left
+	width 30px
+	height 25px
+	font-size 20px
+	transform translateY(-3px)
 
 .second-header
-		margin-left 20px
-		font-size 18px
-		margin-top 5px
-		margin-bottom 10px
+	margin-left 20px
+	font-size 18px
+	margin-top 5px
+	margin-bottom 10px
 
 .slide
-	position relative
+	position absolute
 	width 500px
 	height 300px
 	border 2px solid main-color
+	background-color white
 	font-family Roboto, sans-serif
+	font-weight normal
+	top 50%
+	left 50%
+	transform translate(-50%, -50%)
 
 	&__header
-		float left
-		display inline-block
 		margin-left 65px
 		margin-top 40px
 		margin-bottom 0
 		font-size 26px
-		font-weight black
+		font-weight 900
 
 	&__git-hub
-		float left
-		clear right
 		margin-left 15px
-		margin-top 45px
-		width 250px
+		width 27px
 		height 27px
 		font-size 25px
 		text-decoration none
@@ -227,7 +223,6 @@ body
 			width auto
 
 	&__project-preview
-		display block
 		float left
 		margin-left 22px
 		margin-top 25px
@@ -330,6 +325,12 @@ body
 		&_hovered
 			color white
 			background-color main-color
+
+.clickable
+
+	&:active
+		position relative
+		top 1px
 
 ::-webkit-scrollbar
 	width 5px
